@@ -25,4 +25,23 @@ print(firstUniqChar("aabb"))  # Output: -1
 ///final output: 0 , 2 , -1
 
 
-////End//////////
+////Question--1 //////////
+
+def moveZeroes(nums):
+    # Initialize a pointer to keep track of the position to insert non-zero elements
+    insert_pos = 0
+
+    # Traverse the array
+    for i in range(len(nums)):
+        # If the current element is non-zero
+        if nums[i] != 0:
+            # Move the non-zero element to the current insert position
+            nums[insert_pos] = nums[i]
+            # Increment the insert position
+            insert_pos += 1
+
+    # Fill the remaining positions with zeroes
+    for i in range(insert_pos, len(nums)):
+        nums[i] = 0
+
+    return nums
