@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form with Basic Validation</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      // Get form input values
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var phone = document.getElementById('phone').value;
+      var password = document.getElementById('password').value;
+      var age = document.getElementById('age').value;
+      var gender = document.getElementById('gender').value;
+      var date = document.getElementById('date').value;
+      var color = document.getElementById('color').value;
+
+      // Validate name field
+      if (name === '') {
+        document.getElementById('name-error').innerHTML = 'Please enter your name';
+        return false;
+      }
+
+      // Validate email field
+      var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('email-error').innerHTML = 'Please enter a valid email address';
+        return false;
+      }
+
+      // Validate phone number field
+      var phoneRegex = /^\d{10}$/;
+      if (!phoneRegex.test(phone)) {
+        document.getElementById('phone-error').innerHTML = 'Please enter a valid 10-digit phone number';
+        return false;
+      }
+
+      // Validate password field
+      if (password.length < 6) {
+        document.getElementById('password-error').innerHTML = 'Password must be at least 6 characters long';
+        return false;
+      }
+
+      // Validate age field
+      if (isNaN(age) || age < 18) {
+        document.getElementById('age-error').innerHTML = 'You must be at least 18 years old';
+        return false;
+      }
+
+      // Validate gender field
+      if (gender === '') {
+        document.getElementById('gender-error').innerHTML = 'Please select your gender';
+        return false;
+      }
+
+      // Validate date field
+      if (date === '') {
+        document.getElementById('date-error').innerHTML = 'Please select a date';
+        return false;
+      }
+
+      // Validate color field
+      if (color === '') {
+        document.getElementById('color-error').innerHTML = 'Please select a color';
+        return false;
+      }
+
+      // Form is valid
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <h2>Form with Basic Validation</h2>
+  <form onsubmit="return validateForm()">
+    <label for="name">Name:</label>
+    <input type="text" id="name">
+    <span id="name-error" class="error"></span>
+    <br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email">
+    <span id="email-error" class="error"></span>
+    <br><br>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone">
+    <span id="phone-error" class="error"></span>
+    <br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password">
+    <span id="password-error" class="error"></span>
+    <br><br>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age">
+    <span id="age-error" class="error"></span>
+    <br><br>
+
+    <label for="gender">Gender:</label>
+    <select id="gender">
+      <option value="">Select</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+    <span id="gender-error" class="error"></span>
+    <br><br>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date">
+    <span id="date-error" class="error"></span>
+    <br><br>
+
+    <label for="color">Color:</label>
+    <input type="color" id="color">
+    <span id="color-error" class="error"></span>
+    <br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
